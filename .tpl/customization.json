@@ -1,0 +1,117 @@
+{
+  "$schema": "./schemas/customization.schema.json",
+  "format": "git-template-customization",
+  "formatVersion": "0.2.0",
+  "entries": [
+    {
+      "id": "brand",
+      "title": "品牌与导航",
+      "description": "品牌、联系信息和导航集中配置",
+      "files": [
+        {
+          "path": "src/features/amorette/config/brand.ts",
+          "kind": "file",
+          "purpose": "品牌、联系信息和导航集中配置"
+        }
+      ],
+      "constraints": [
+        "不得引入未批准依赖",
+        "保留双语、键盘操作和减少动态效果支持"
+      ],
+      "checks": [
+        "typecheck",
+        "lint",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "content",
+      "title": "双语内容",
+      "description": "页面文案、文章与业务数据同时修改中英文",
+      "files": [
+        {
+          "path": "src/features/amorette/content",
+          "kind": "directory",
+          "purpose": "页面文案、文章与业务数据同时修改中英文"
+        }
+      ],
+      "constraints": [
+        "不得引入未批准依赖",
+        "保留双语、键盘操作和减少动态效果支持"
+      ],
+      "checks": [
+        "typecheck",
+        "lint",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "theme",
+      "title": "主题与动效",
+      "description": "主题令牌、响应式布局和滚动条",
+      "files": [
+        {
+          "path": "src/features/amorette/theme.css",
+          "kind": "file",
+          "purpose": "主题令牌、响应式布局和滚动条"
+        }
+      ],
+      "constraints": [
+        "不得引入未批准依赖",
+        "保留双语、键盘操作和减少动态效果支持"
+      ],
+      "checks": [
+        "typecheck",
+        "lint",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "interaction",
+      "title": "交互组件",
+      "description": "动效、菜单、FAQ、表单与无障碍",
+      "files": [
+        {
+          "path": "src/features/amorette/components",
+          "kind": "directory",
+          "purpose": "动效、菜单、FAQ、表单与无障碍"
+        }
+      ],
+      "constraints": [
+        "不得引入未批准依赖",
+        "保留双语、键盘操作和减少动态效果支持"
+      ],
+      "checks": [
+        "typecheck",
+        "lint",
+        "build",
+        "test"
+      ]
+    },
+    {
+      "id": "pages",
+      "title": "页面组合",
+      "description": "按职责组合页面，新增页面同步路由登记",
+      "files": [
+        {
+          "path": "src/features/amorette/pages",
+          "kind": "directory",
+          "purpose": "按职责组合页面，新增页面同步路由登记"
+        }
+      ],
+      "constraints": [
+        "不得引入未批准依赖",
+        "保留双语、键盘操作和减少动态效果支持"
+      ],
+      "checks": [
+        "typecheck",
+        "lint",
+        "build",
+        "test"
+      ]
+    }
+  ]
+}

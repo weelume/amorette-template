@@ -1,0 +1,85 @@
+{
+  "$schema": "../schemas/verification.schema.json",
+  "format": "git-template-verification",
+  "formatVersion": "0.2.0",
+  "status": "passed",
+  "checkedAt": "2026-11-03T08:19:10.149Z",
+  "sourceCommit": null,
+  "sourceDigest": "7434ed6e972eaa14a0a22202f293cfbd0b642fc75f52085e58b265ac4dbf0b8a",
+  "environment": {
+    "platform": "linux (local WSL)",
+    "arch": "x64",
+    "node": "24.16.0",
+    "packageManager": "pnpm@9.15.4",
+    "cleanDirectory": false,
+    "localGitClone": false
+  },
+  "checks": [
+    {
+      "id": "typecheck",
+      "cwd": ".",
+      "argv": [
+        "pnpm",
+        "run",
+        "typecheck"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-11-03T08:08:59.496Z",
+      "finishedAt": "2026-11-03T08:09:01.711Z"
+    },
+    {
+      "id": "lint",
+      "cwd": ".",
+      "argv": [
+        "pnpm",
+        "run",
+        "lint"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-11-03T08:09:01.715Z",
+      "finishedAt": "2026-11-03T08:09:03.648Z"
+    },
+    {
+      "id": "build",
+      "cwd": ".",
+      "argv": [
+        "pnpm",
+        "run",
+        "build"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-11-03T08:09:03.652Z",
+      "finishedAt": "2026-11-03T08:09:28.392Z"
+    },
+    {
+      "id": "test",
+      "cwd": ".",
+      "argv": [
+        "pnpm",
+        "run",
+        "test"
+      ],
+      "status": "passed",
+      "exitCode": 0,
+      "startedAt": "2026-11-03T08:09:28.396Z",
+      "finishedAt": "2026-11-03T08:09:32.716Z"
+    }
+  ],
+  "services": [
+    {
+      "id": "web",
+      "status": "passed",
+      "stopped": true,
+      "checkedAt": "2026-11-03T08:09:32.716Z",
+      "reason": "集成测试启动临时生产服务，逐页验证双语HTTP响应及404，并在结束时停止；交互预览服务单独运行。"
+    }
+  ],
+  "limitations": [
+    "已通过应用检查与三端主要页面、主要交互实测；原站全部页面在全部视口的逐帧精确时序对照尚未完成。",
+    "减少动态效果已有实现和源码检查，尚未实际切换系统偏好做完整跨端验收。",
+    "参考站设计、图片与视频的商业再分发授权尚未确认，listed=false。"
+  ]
+}

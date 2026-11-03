@@ -1,0 +1,8 @@
+import{test}from'node:test'
+import assert from'node:assert/strict'
+import{spawn}from'node:child_process'
+import{createServer}from'node:net'
+import{readFile}from'node:fs/promises'
+import{setTimeout as delay}from'node:timers/promises'
+// 以隔离生产服务验证真实 SSR 路径，捕获构建阶段无法发现的客户端/服务端边界错误。
+test('所有注册页面的两种语言均返回真实页面，未知路径返回404',async()=>{const probe=createServer();await new Promise(resolve=>probe.listen(0,'127.0.0.1',resolve));const port=probe.address().port;await new Promise(resolve=>probe.close(resolve));let logs='';const child=spawn(process.execPath,['scripts/next.mjs','start'],{env:{...process.env,PORT:String(port),HOSTNAME:'127.0.0.1'},stdio:['ignore','pipe','pipe']});child.stdout.on('data',v=>logs+=v);child.stderr.on('data',v=>logs+=v);try{const base='http://127.0.0.1:'+port;let ready=false;for(let i=0;i<80;i++){try{if((await fetch(base)).ok){ready=true;break}}catch{}await delay(100)}assert.ok(ready,logs);const source=await readFile('src/features/amorette/content/pages.ts','utf8'),paths=[...source.matchAll(/slug:\s*['"]([^'"]*)['"]/g)].map(m=>m[1]);assert.ok(paths.length>0);for(const locale of['','en/'])for(const path of paths){const response=await fetch(base+'/'+locale+path),html=await response.text();assert.equal(response.status,200,locale+path+' '+logs);assert.match(html,/<h[12]\b/,'缺少实际标题 '+locale+path);assert.ok(!html.includes('Application error:'),'SSR异常 '+locale+path)}assert.equal((await fetch(base+'/this-page-does-not-exist')).status,404);assert.ok(!logs.includes('⨯ Error'),logs);console.log('真实生产路径 '+paths.length*2+' 条通过')}finally{child.kill('SIGTERM');await new Promise(resolve=>child.once('exit',resolve))}}, {timeout:120000})
